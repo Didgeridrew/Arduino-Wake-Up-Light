@@ -44,20 +44,21 @@ Bounce debouncer2 = Bounce();
 
 //*******************************************************************************************************
 void setup() {
-  TCCR1B = (TCCR1B & 0b11111000) | 0x01;
-  TCCR2B = (TCCR2B & 0b11111000) | 0x01;
+  // Adjust the timer registers to a higher frequency to get rid of annoying hum from the LEDs:
+  TCCR1B = (TCCR1B & 0b11111000) | 0x01;    
+  TCCR2B = (TCCR2B & 0b11111000) | 0x01;    
   
+  // Setup the output pins for the leds: 
   pinMode(pulsepinR, OUTPUT);
   pinMode(pulsepinB, OUTPUT);
 
-
- // Setup the first button with an internal pull-up :
+  // Setup the first button with an internal pull-up :
   pinMode(BUTTON_PIN_1,INPUT_PULLUP);
   // After setting up the button, setup the Bounce instance :
   debouncer1.attach(BUTTON_PIN_1);
   debouncer1.interval(3); // interval in ms
   
-   // Setup the second button with an internal pull-up :
+  // Setup the second button with an internal pull-up :
   pinMode(BUTTON_PIN_2,INPUT_PULLUP);
   // After setting up the button, setup the Bounce instance :
   debouncer2.attach(BUTTON_PIN_2);
