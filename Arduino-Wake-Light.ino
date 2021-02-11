@@ -120,39 +120,40 @@ void manualPos() {
 }
 //*******************************************************************************************************
 void manualSet() {
-    if (manualSetting == 1){
-    analogWrite(pulsepinR, 24);
-    analogWrite(pulsepinB, 0);
-    }
-    if (manualSetting == 2){
-    analogWrite(pulsepinR, 90);
-    analogWrite(pulsepinB, 0);
-    }
-    if (manualSetting == 3){
-    analogWrite(pulsepinR, 250);
-    analogWrite(pulsepinB, 0);
-    }
-    if (manualSetting == 4){
-    analogWrite(pulsepinR, 250);
-    analogWrite(pulsepinB, 100);
-    }
-    if (manualSetting == 5){
-    analogWrite(pulsepinR, 250);
-    analogWrite(pulsepinB, 250);
-    }
-    if (manualSetting > 5){
-    manualSetting = 0;
-    }
-    if (manualSetting < 0){
-    manualSetting = 0;
-    }
-    if (manualSetting == 0){ 
-    analogWrite(pulsepinR, 0);
-    analogWrite(pulsepinB, 0);
-    }  
-//  Serial.print("Button 1 Count:  ");
-//  Serial.println(button1PushCounter);
+  manualSetting = constrain(manualSetting, 0, 5);
+    switch (manualSetting) {
+      case 0:
+        analogWrite(pulsepinR, 0);
+        analogWrite(pulsepinB, 0);
+        break;
+      case 1:
+        analogWrite(pulsepinR, 24);
+        analogWrite(pulsepinB, 0);
+        break;
+      case 2:
+        analogWrite(pulsepinR, 90);
+        analogWrite(pulsepinB, 0);
+        break;
+      case 3:
+        analogWrite(pulsepinR, 254);
+        analogWrite(pulsepinB, 0);
+        break;
+      case 4:
+        analogWrite(pulsepinR, 254);
+        analogWrite(pulsepinB, 100);
+        break;
+      case 5:
+        analogWrite(pulsepinR, 254);
+        analogWrite(pulsepinB, 254);
+        break;
+      default:
+        manualSetting = 0;
+        analogWrite(pulsepinR, 24);
+        analogWrite(pulsepinB, 0);
+        break;
+  Alarm.delay(5);
   }
+}
 
 //*******************************************************************************************************
 //Turn ON the light via Alarm
